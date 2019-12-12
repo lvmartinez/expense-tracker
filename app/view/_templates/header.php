@@ -1,28 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
+    <title>EXPENSE TRACKER</title>
+
+
+
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <title>MINI</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- JS -->
-    <!-- please note: The JavaScript files are loaded in the footer to speed up page construction -->
-    <!-- See more here: http://stackoverflow.com/q/2105327/1114320 -->
-
-    <!-- CSS -->
-    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap.min.css" >
+    <link rel="stylesheet" href="<?php echo URL; ?>css/main.css" >
+    <link href="<?php echo URL; ?>css/all.css" rel="stylesheet"> <!--load all styles -->
 </head>
 <body>
-    <!-- logo -->
-    <div class="logo">
-        MINI
-    </div>
-
-    <!-- navigation -->
-    <div class="navigation">
-        <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL; ?>home/exampleone">subpage</a>
-        <a href="<?php echo URL; ?>home/exampletwo">subpage 2</a>
-        <a href="<?php echo URL; ?>songs">songs</a>
-    </div>

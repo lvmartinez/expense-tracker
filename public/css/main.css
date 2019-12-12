@@ -1,0 +1,83 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: #5a5a5a;
+}
+header {
+  margin-bottom: 30px;
+}
+
+.badge-danger-alt {
+  color: #fff;
+  background-color: #dc3545;
+  position: absolute;
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10rem;
+
+
+}
+.list-group-notify {
+  width:300px;
+
+}
+.list-group-notify .list-group-item {
+  border: 0;
+}
+.list-group-notify .list-group-item:hover {
+  background: inherit;
+}
+.navbar-brand {
+  background: #444b52;
+  padding: 5px 10px;
+}
+
+
+/*
+ * Cover
+ */
+.cover-container {
+  max-width: 42em;
+}
+
+
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+
+
+/*
+ * Header
+ */
+.masthead {
+  margin-bottom: 2rem;
+}
+
+
+
+.nav-link.text-info.active {
+  color:#fff!important;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 48em) {
+  .list-group-notify {
+    width:450px;
+  }
+
+}
+
+@media (min-width: 62em) {
+
+}
