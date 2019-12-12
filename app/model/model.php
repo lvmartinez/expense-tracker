@@ -29,7 +29,7 @@ class Model
      */
     public function getLatestExpenses()
     {
-        $sql = "SSELECT *, sum(amount) FROM `expense` group by category_id order by date DESC LIMIT 0,3";
+        $sql = "SELECT *, sum(amount) as total_amount FROM `expense` as e inner join expense_category as c ON c.id = e.category_id group by c.id order by e.date DESC LIMIT 0,3";
         $query = $this->db->prepare($sql);
         $query->execute();
 

@@ -27,32 +27,27 @@
                     <span class="text-muted">Latest Expenses</span>
                 </h4>
                 <ul class="list-group mb-3">
+				
+				
+				<?php foreach ($latestExpenses as $latest) {?>
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
-                            <h6 class="my-0">Internet Expenses</h6>
-                            <small class="text-muted">Notes...</small>
+                            <h6 class="my-0"><?php echo $latest->name ?></h6>
+                            <small class="text-muted"><?php echo $latest->notes ?></small>
+							
+							<?php if ($latest->total_amount > $latest->budget ){?>
+								<br>
+								<div class="text-danger">
+									<small><i class="fa fa-exclamation-triangle"></i> SPENDING OVER BUDGET</small>
+								</div>
+							<?php }?>
+							
                         </div>
-                        <span class="text-muted">$190</span>
+                        <span class="text-muted">$<?php echo $latest->amount ?></span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Telephone</h6>
-                            <small class="text-muted"> </small>
-                        </div>
-                        <span class="text-muted">$8</span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between bg-light">
-                        <div class="text-danger">
-                            <h6 class="my-0">Office Supplies</h6>
-                            <small><i class="fa fa-exclamation-triangle"></i> SPENDING OVER BUDGET</small>
-                        </div>
-                        <span class="text-danger">$500</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
+				<?php } ?>   
+					
+					
                 </ul>
 
 
@@ -101,9 +96,7 @@
                             <div class="input-group">
 
                             <input type="text" class="form-control" name="tax" id="tax" placeholder="" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text">%</span>
-                            </div>
+                            
                             <div class="invalid-feedback">
                                 Please provide a valid amount.
                             </div>
