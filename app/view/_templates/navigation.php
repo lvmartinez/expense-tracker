@@ -7,13 +7,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item mx-md-0 mx-3 ">
-                    <a class="nav-link <?php echo $_SERVER['REQUEST_URI'] == '/expense/dashboard'? 'active': ''; ?>"   href="/expense/dashboard">Dashboard </a>
+                    <a class="nav-link <?php echo $_SERVER['REQUEST_URI'] == '/expense-tracker/dashboard'? 'active': ''; ?>"   href="/expense-tracker/dashboard">Dashboard </a>
                 </li>
                 <li class="nav-item mx-md-0 mx-3">
-                    <a class="nav-link <?php echo $_SERVER['REQUEST_URI'] == '/expense/dashboard/expenses'? 'active': ''; ?>" href="/expense/dashboard/expenses">Expenses </a>
+                    <a class="nav-link <?php echo $_SERVER['REQUEST_URI'] == '/expense-tracker/dashboard/expenses'? 'active': ''; ?>" href="/expense-tracker/dashboard/expenses">Expenses </a>
                 </li>
                 <li class="nav-item mx-md-0 mx-3 ">
-                    <a class="nav-link text-info <?php echo $_SERVER['REQUEST_URI'] == '/expense/dashboard/newExpense'? 'active': ''; ?>"  href="/expense/dashboard/newExpense" tabindex="-1" aria-disabled="true"><i class="fa fa-plus"></i> Add Expenses</a>
+                    <a class="nav-link text-info <?php echo $_SERVER['REQUEST_URI'] == '/expense-tracker/dashboard/newExpense'? 'active': ''; ?>"  href="/expense-tracker/dashboard/newExpense" tabindex="-1" aria-disabled="true"><i class="fa fa-plus"></i> Add Expenses</a>
                 </li>
 
 
