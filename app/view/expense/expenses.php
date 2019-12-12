@@ -1,5 +1,5 @@
 <?php
-$categories = array(
+/*$categories = array(
     'Groceries',
     'Entertainment',
     'Credit Card Charges',
@@ -8,7 +8,9 @@ $categories = array(
     'Telephone',
     'Electricity',
     'Travel',
-    );
+    );*/
+	
+print_r($latestExpenses);
 
 ?>
 
@@ -74,8 +76,8 @@ $categories = array(
                         <div class="col-md-12 mb-3">
                             <label for="category">Category Name</label>
                             <select  class="form-control" id="category">
-                                <?php foreach ($categories as $category) {?>
-                                <option><?php echo $category ?></option>
+                                <?php foreach ($expensesCategories as $category) {?>
+                                <option value="<?php echo $category->id ?>"><?php echo $category->name ?></option>
                                 <?php }?>
                             </select>
                             <div class="invalid-feedback">

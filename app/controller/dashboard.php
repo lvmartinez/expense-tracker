@@ -25,6 +25,9 @@ class Dashboard extends Controller
      */
     public function newExpense()
     {
+		
+		$expensesCategories = (array)$this->model->getExpensesCategories();
+		$latestExpenses = (array)$this->model->getLatestExpenses();
         // load views
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/navigation.php';
