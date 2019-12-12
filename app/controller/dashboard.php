@@ -33,6 +33,21 @@ class Dashboard extends Controller
         require APP . 'view/_templates/navigation.php';
         require APP . 'view/expense/expenses.php';
     }
+	
+	
+	
+	
+	/**
+     * ACTION: addExpense
+     * This method handles what happens when you move to /dashboard/addExpense
+     */
+    public function addExpense()
+    {
+        if (isset($_POST)) {
+            $this->model->addExpense('expense', $_POST);
+        }
+        header('location: ' . URL . 'dashboard/newExpense');
+    }
     
 
 }

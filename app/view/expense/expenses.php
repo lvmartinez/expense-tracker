@@ -10,7 +10,6 @@
     'Travel',
     );*/
 	
-print_r($latestExpenses);
 
 ?>
 
@@ -60,11 +59,11 @@ print_r($latestExpenses);
             </div>
             <div class="col-md-8  order-1">
                 <h4 class="mb-3">Record Expense</h4>
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" method="post" action="<?php echo URL; ?>dashboard/addexpense" novalidate>
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="date">Date</label>
-                            <input type="text" class="form-control" id="date" placeholder="" value="" required>
+                            <input type="text" class="form-control" name="date" id="date" placeholder="" value="<?php echo date('Y-m-d H:i:s', time());?>" required>
                             <div class="invalid-feedback">
                                 Date is required.
                             </div>
@@ -75,7 +74,7 @@ print_r($latestExpenses);
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="category">Category Name</label>
-                            <select  class="form-control" id="category">
+                            <select  class="form-control" name="category_id" id="category">
                                 <?php foreach ($expensesCategories as $category) {?>
                                 <option value="<?php echo $category->id ?>"><?php echo $category->name ?></option>
                                 <?php }?>
@@ -92,7 +91,7 @@ print_r($latestExpenses);
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="amount">Amount</label>
-                            <input type="text" class="form-control" id="amount" placeholder="" required>
+                            <input type="text" class="form-control" name="amount" id="amount" placeholder="" required>
                             <div class="invalid-feedback">
                                 Please enter amount.
                             </div>
@@ -101,7 +100,7 @@ print_r($latestExpenses);
                             <label for="tax">Tax</label>
                             <div class="input-group">
 
-                            <input type="text" class="form-control" id="tax" placeholder="" required>
+                            <input type="text" class="form-control" name="tax" id="tax" placeholder="" required>
                             <div class="input-group-append">
                                 <span class="input-group-text">%</span>
                             </div>
@@ -117,7 +116,7 @@ print_r($latestExpenses);
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="reference">Reference #</label>
-                            <input type="text" class="form-control" id="reference" placeholder="">
+                            <input type="text" class="form-control" name="reference" id="reference" placeholder="">
 
                         </div>
                     </div>
@@ -126,7 +125,7 @@ print_r($latestExpenses);
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="notes">Notes</label>
-                            <textarea  class="form-control" id="notes"  ></textarea>
+                            <textarea  class="form-control" name="notes" id="notes"  ></textarea>
                         </div>
                     </div>
 
