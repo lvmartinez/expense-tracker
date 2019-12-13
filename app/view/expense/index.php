@@ -1,4 +1,4 @@
-<?php //print_r($months); ?>
+<?php 	print_r(array_keys($expenseCat['Electricity'])); ?>
 
 <script>
     window.onload = function () {
@@ -26,7 +26,7 @@
                 data:<?php echo $data ?>
             }],
             xaxis: {
-                categories: <?php echo $categories ?>,
+                categories: <?php echo $xaxis ?>,
 
                 labels: {
                     style: {
@@ -84,21 +84,16 @@
                 <span class="text-muted">Over Budget Expenses</span>
             </h4>
             <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-danger">
-                        <h6 class="my-0">Electricity</h6>
-                        <small><i class="fa fa-exclamation-triangle"></i> SPENDING OVER BUDGET</small>
-                    </div>
-                    <span class="text-danger">$130</span>
-                </li>
-
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-danger">
-                        <h6 class="my-0">Office Supplies</h6>
-                        <small><i class="fa fa-exclamation-triangle"></i> SPENDING OVER BUDGET</small>
-                    </div>
-                    <span class="text-danger">$500</span>
-                </li>
+				<?php foreach ($expenseCat as $exp){ ?>
+				
+					<li class="list-group-item d-flex justify-content-between bg-light">
+						<div class="text-danger">
+							<h6 class="my-0">Electricity</h6>
+							<small><i class="fa fa-exclamation-triangle"></i> SPENDING OVER BUDGET</small>
+						</div>
+						<span class="text-danger">$130</span>
+					</li>
+				<?php } ?>
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total Overbudget (USD)</span>
                     <strong>$70</strong>

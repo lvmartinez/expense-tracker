@@ -65,9 +65,9 @@ class Model
 	/**
      * Get a sum of monthly expenses
      */
-    public function getExpensesSum($month, $year, $start, $end)
+    public function getExpensesSum($month, $year, $start, $end, $order, $group)
     {
-        $sql = "SELECT sum(amount+tax) as total,DATE_FORMAT(date, '%b') as month FROM expense ";
+        $sql = "SELECT sum(amount+tax) as total, (c.budget*12) as budget, DATE_FORMAT(date, '%b') as month, c.name FROM expense as e inner join expense_category as c ON c.id = e.category_id ";
 		
 		if( $year != '' ){
 			$sql.="WHERE YEAR(date) = '$year' ";
@@ -77,9 +77,44 @@ class Model
 			$sql.="and MONTH(date) = '$month' ";
 		}
 		
-		$sql.= "GROUP BY month(date) ";
-		$sql.= "ORDER BY date ASC ";  
+		if( $group != '' ){
+			$sql.= "GROUP BY $group ";
+		}
 		
+		if( $order != '' ){
+			$sql.= "ORDER BY $order ";
+		}  
+		
+		if( ( $start != -1 ) && ($end != 0) ){	
+			$sql.= "LIMIT $start, $end ";
+		}
+		
+		$query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+	
+	public function getExpensesBudget($month, $year, $start, $end, $order, $group)
+    {
+        $sql = "SELECT SUM(amount+tax) AS total, sum(c.budget) as budget, c.name from expense as e inner join expense_category as c ON c.id = e.category_id ";
+		
+		if( $year != '' ){
+			$sql.="WHERE YEAR(date) = '$year' ";
+		}
+		
+		if( $month != '' ){
+			$sql.="and MONTH(date) = '$month' ";
+		}
+		
+		if( $group != '' ){
+			$sql.= "GROUP BY $group ";
+		}
+		
+		if( $order != '' ){
+			$sql.= "ORDER BY $order ";
+		}
+	
 		if( ( $start != -1 ) && ($end != 0) ){	
 			$sql.= "LIMIT $start, $end ";
 		}

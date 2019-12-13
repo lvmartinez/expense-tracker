@@ -14,23 +14,27 @@ class Dashboard extends Controller
      */
     public function index()
     {
-		$year= date('Y'); $totalExpense = 0;
+		$year= date('Y'); $totalExpense = 0; $expenseCat = array();
 		$months= ['Jan'=>0, 'Feb'=>0, 'Mar'=>0, 'Apr'=>0, 'May'=>0, 'Jun'=>0, 'Jul'=>0, 'Aug'=>0, 'Sep'=>0, 'Oct'=>0, 'Nov'=>0, 'Dec'=>0];
 		
 		if ( isset($_GET) && ($_GET !='') ){
 			$year= isset($_GET['year']) ? $_GET['year'] : $year;
 		}
 		
-		$monthlyExpensesSum = (array)$this->model->getExpensesSum('', $year, -1, 0);
-		
+		$monthlyExpensesSum = (array)$this->model->getExpensesSum('', $year, -1, 0, 'date ASC', 'month, name');
 		
 		foreach ($monthlyExpensesSum as $value){ 
-			$months[$value->month] = (float)$value->total;
+			$months[$value->month] += (float)$value->total;
 			$totalExpense += (float)$value->total;
+			if ( !isset($expenseCat[$value->name][$value->budget])){
+				$expenseCat[$value->name][$value->budget] = (float)$value->total;
+			}else{
+				$expenseCat[$value->name][$value->budget] += (float)$value->total;
+			}
 		
 		}
 		
-		$categories = "['".implode("','",array_keys($months))."']";
+		$xaxis = "['".implode("','",array_keys($months))."']";
 		$data = "[".implode(",",array_values($months))."]";
         	
 		// load views
