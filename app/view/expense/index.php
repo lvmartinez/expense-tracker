@@ -1,3 +1,5 @@
+<?php print_r($monthlyExpenses); ?>
+
 <script>
     window.onload = function () {
 
@@ -76,7 +78,7 @@
       <div class="col-md-8">
         <h2>Dashboard</h2>
         <p>A quick overview of all the activity on your expenses</p>
-        <p><a class="btn btn-secondary" href="/expense-tracker/expense/expenses" role="button">View Expenses <i class="fas fa-angle-right"></i> </a></p>
+        <p><a class="btn btn-secondary" href="/expense-tracker/dashboard/expenses" role="button">View Expenses <i class="fas fa-angle-right"></i> </a></p>
       </div><!-- /.col-lg-8 -->
         <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">

@@ -52,7 +52,7 @@
 				<button class="btn btn-primary btn-lg btn-block" type="submit">Search</button>
             </div>
             <div class="col-sm-12 text-right mb-3">
-                <a class="btn btn-info" href="/expense/dashboard/newExpense" role="button" > <i class="fa fa-plus"></i> Add Expense </a>
+                <a class="btn btn-info" href="/expense-tracker/dashboard/newExpense" role="button" > <i class="fa fa-plus"></i> Add Expense </a>
             </div>
 
             <div class="col-md-12 ">

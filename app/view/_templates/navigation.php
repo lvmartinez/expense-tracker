@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand mx-3 d-inline-block" href="/expense/"  ><i class="fa fa-wallet"></i> EXPENSE TRACKER</a>
+        <a class="navbar-brand mx-3 d-inline-block" href="/expense-tracker/"  ><i class="fa fa-wallet"></i> EXPENSE TRACKER</a>
         <button class="navbar-toggler mx-3" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

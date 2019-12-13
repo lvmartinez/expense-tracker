@@ -27,7 +27,7 @@
     </header>
 <main role="main" class="inner cover">
     <h1 class="cover-heading"><i class="fa fa-wallet"></i> EXPENSE TRACKER</h1>
-    <p class="lead">A Simple Expense Tracker for Teams</p>
+    <p class="lead">A Simple Expense Tracker</p>
     <p class="lead">
         <a href="/expense-tracker/dashboard/" class="btn btn-lg btn-secondary">Learn more</a>
     </p>

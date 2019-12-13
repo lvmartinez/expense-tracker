@@ -42,8 +42,13 @@ class Model
     public function getExpenses($month, $year, $start, $end)
     {
         $sql = "SELECT * FROM expense as e inner join expense_category as c ON c.id = e.category_id ";
-		if( ($month != '' ) && ($year != '' ) ){
-			$sql.="WHERE MONTH(date) = '$month' and YEAR(date) = '$year' ";
+		
+		if( $year != '' ){
+			$sql.="WHERE YEAR(date) = '$year' ";
+		}
+		
+		if( $month != '' ){
+			$sql.="and MONTH(date) = '$month' ";
 		}
 		$sql.= "ORDER BY date DESC ";  
 		

@@ -14,6 +14,18 @@ class Dashboard extends Controller
      */
     public function index()
     {
+		$year= date('Y');
+		$series = '';
+		
+		if ( isset($_GET) && ($_GET !='') ){
+			$year= isset($_GET['year']) ? $_GET['year'] : $year;
+		}
+		
+		$monthlyExpenses = (array)$this->model->getExpenses('', $year, -1, 0);
+		foreach ($monthlyExpenses as $expense){
+			
+		}
+		
         // load views
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/navigation.php';
