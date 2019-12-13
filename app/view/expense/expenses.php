@@ -75,7 +75,7 @@
                                 <?php }?>
                             </select>
                             <div class="invalid-feedback">
-                                Date is required.
+                                Category is required.
                             </div>
                         </div>
 

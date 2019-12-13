@@ -34,8 +34,48 @@ class Dashboard extends Controller
         require APP . 'view/_templates/navigation.php';
         require APP . 'view/expense/expenses.php';
     }
-	
-	
+	/**
+     * PAGE: expense List page
+     */
+    public function expenses()
+    {	
+		$month= date('m');
+		$year= date('Y');
+		$pageIndex = 0;
+		
+		if ( isset($_GET) && ($_GET !='') ){
+			$month= isset($_GET['month']) ? $_GET['month'] : $month;
+			$year= isset($_GET['year']) ? $_GET['year'] : $year;
+			$pageIndex = isset($_GET['page']) ? $_GET['page'] : $pageIndex;
+		}
+		
+		$rowPerPage = 3;
+		$monthlyExpenses = (array)$this->model->getExpenses($month, $year, $pageIndex, $rowPerPage);
+		$countExpenses = count($monthlyExpenses);
+		$pages = ceil($countExpenses / $rowPerPage) + 1;
+		
+        // load views
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/_templates/navigation.php';
+        require APP . 'view/expense/expenses-list.php';
+    }
+    /**
+     * ACTION: expense List Navigation
+     */
+	public function expensesNav()
+    {
+		$currentMonth=date('m');
+		$currentYear=date('Y');
+		$rowPerPage = 3;
+		$monthlyExpenses = (array)$this->model->getExpenses($currentMonth, $currentYear,0,$rowPerPage);
+		$countExpenses = count($monthlyExpenses);
+		$pages = ceil($countExpenses / $rowPerPage) + 1;
+		
+        // load views
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/_templates/navigation.php';
+        require APP . 'view/expense/expenses-list.php';
+    }
 	
 	
 	/**

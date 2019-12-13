@@ -12,18 +12,6 @@ class Model
             exit('Database connection could not be established.');
         }
     }
-    /**
-     * Get all expenses
-     */
-    public function getExpenses()
-    {
-        $sql = "SELECT * FROM expenses";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        return $query->fetchAll();
-    }
-	
 	/**
      * Get latest expenses
      */
@@ -37,12 +25,29 @@ class Model
     }
 
     /**
-     * Get all expenses
+     * Get expenses categories
      */
     public function getExpensesCategories()
     {
         $sql = "SELECT * FROM expense_category";
         $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+	
+	/**
+     * Get all expenses
+     */
+    public function getExpenses($month='', $year='', $start=0, $end=3)
+    {
+        $sql = "SELECT * FROM expense as e inner join expense_category as c ON c.id = e.category_id ";
+		if( ($month != '' ) && ($year != '' ) ){
+			$sql.="WHERE MONTH(date) = '$month' and YEAR(date) = '$year' ";
+		}
+		$sql .= "ORDER BY date DESC LIMIT $start, $end";      
+		
+		$query = $this->db->prepare($sql);
         $query->execute();
 
         return $query->fetchAll();
