@@ -28,7 +28,7 @@ class Model
      */
     public function getExpensesCategories()
     {
-        $sql = "SELECT * FROM expense_category";
+        $sql = "SELECT * FROM expense_category order by name ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -94,40 +94,20 @@ class Model
         return $query->fetchAll();
     }
 	
-	public function getExpensesBudget($month, $year, $start, $end, $order, $group)
-    {
-        $sql = "SELECT SUM(amount+tax) AS total, sum(c.budget) as budget, c.name from expense as e inner join expense_category as c ON c.id = e.category_id ";
-		
-		if( $year != '' ){
-			$sql.="WHERE YEAR(date) = '$year' ";
-		}
-		
-		if( $month != '' ){
-			$sql.="and MONTH(date) = '$month' ";
-		}
-		
-		if( $group != '' ){
-			$sql.= "GROUP BY $group ";
-		}
-		
-		if( $order != '' ){
-			$sql.= "ORDER BY $order ";
-		}
-	
-		if( ( $start != -1 ) && ($end != 0) ){	
-			$sql.= "LIMIT $start, $end ";
-		}
-		
-		$query = $this->db->prepare($sql);
-        $query->execute();
-
-        return $query->fetchAll();
-    }
-	
 	/**
      * Record new expense on database
      */
     public function addExpense($table, $data)
+    {
+
+        if (isset($data)) {
+            $result=$this->dynamicInsert($table, $data);
+        }
+    }
+	/**
+     * Record new category on database
+     */
+	public function addCategory($table, $data)
     {
 
         if (isset($data)) {

@@ -85,7 +85,7 @@ class Dashboard extends Controller
         require APP . 'view/_templates/navigation.php';
         require APP . 'view/expense/expenses-list.php';
     }
-	
+   	
 	/**
      * ACTION: addExpense
      * This method handles what happens when you move to /dashboard/addExpense

@@ -1,18 +1,3 @@
-<?php
-/*$categories = array(
-    'Groceries',
-    'Entertainment',
-    'Credit Card Charges',
-    'Internet',
-    'Rent',
-    'Telephone',
-    'Electricity',
-    'Travel',
-    );*/
-	
-
-?>
-
 <main role="main">
 
 

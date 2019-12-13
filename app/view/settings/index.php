@@ -1,21 +1,3 @@
-
-<?php
-$categories = array(
-        'Advertising & Marketing',
-    'Automobile Expense',
-    'Consultant Expense',
-    'Credit Card Charges',
-    'Internet',
-    'Office Supplies',
-    'Rent',
-    'Telephone',
-    'Electricity',
-    'Travel',
-    );
-
-
-?>
-
 <main role="main">
 
     <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -25,48 +7,41 @@ $categories = array(
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Categories</span>
-                    <span class="badge bg-secondary rounded-pill"><?php echo count($categories)?></span>
+                    <span class="badge bg-secondary rounded-pill"><?php echo count($expensesCategories)?></span>
                 </h4>
                 <ul class="list-group mb-3">
-                    <?php foreach ($categories as $category) {?>
+                    <?php foreach ($expensesCategories as $category) {?>
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
-                                <h6 class="my-0"><?php echo $category?></h6>
+                                <h6 class="my-0"><?php echo $category->name ?></h6>
                             </div>
-                            <span class="text-muted"><?php echo rand(1,7)?></span>
                         </li>
                     <?php }?>
 
 
                 </ul>
 
-
-                    <hr class="featurette-divider">
-
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-
+                    
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Add New Expense Category</h4>
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" method="post" action="<?php echo URL; ?>settings/addCategory" novalidate>
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="category">Category Name</label>
-                            <input type="text" class="form-control" id="category" placeholder="" value="" required>
+                            <input type="text" class="form-control" id="category" name="name" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Required.
                             </div>
                         </div>
+						<div class="col-md-12 mb-3">
+                            <label for="description">Category Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="" value="" required>
+
+                        </div>
                         <div class="col-6 mb-3">
                             <label for="budget">Monthly Budget</label>
-                            <input type="text" class="form-control" id="budget" placeholder="" value="" required>
+                            <input type="text" class="form-control" id="budget" name="budget" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Required.
                             </div>

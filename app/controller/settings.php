@@ -14,6 +14,8 @@ class Settings extends Controller
      */
     public function index()
     {
+		$expensesCategories = (array)$this->model->getExpensesCategories();
+		$latestExpenses = (array)$this->model->getLatestExpenses();
         // load views
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/navigation.php';
@@ -22,10 +24,14 @@ class Settings extends Controller
     }
 	
 	/**
-     * ACTION: getLatestExpense
-     *      */
-    public function getLatestExpense()
-    {	
-		return (array)$this->model->getLatestExpenses();
+     * ACTION: addCategory
+     * This method handles what happens when you move to /dashboard/addExpense
+     */
+    public function addCategory()
+    {
+        if (isset($_POST)) {
+            $this->model->addCategory('expense_category', $_POST);
+        }
+        header('location: ' . URL . 'settings/index');
     }
 }
