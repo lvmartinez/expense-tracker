@@ -1,10 +1,9 @@
-<?php print_r($monthlyExpenses); ?>
+<?php //print_r($months); ?>
 
 <script>
     window.onload = function () {
-
+		
         //var colors = ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0', '#546E7A', '#26a69a', '#D10CE8'];\
-
         const options = {
             chart: {
                 height: 350,
@@ -24,10 +23,10 @@
             },
             series: [{
                 name: 'Monthly Expenses',
-                data: [0, 0, 0, 0, 21, 22, 10, 28, 16, 21, 13, 30]
+                data:<?php echo $data ?>
             }],
             xaxis: {
-                categories: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                categories: <?php echo $categories ?>,
 
                 labels: {
                     style: {
@@ -114,7 +113,7 @@
       <h4>Expenses</h4>
       <div class="row">
           <div class="col-md-12">
-              Total Expenses: <strong>$1203.92</strong>
+              Total Expenses: <strong>$<? echo $totalExpense; ?></strong>
           </div>
       </div>
       <div class="row">

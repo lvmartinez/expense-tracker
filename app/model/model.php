@@ -17,7 +17,7 @@ class Model
      */
     public function getLatestExpenses()
     {
-        $sql = "SELECT *, sum(amount) as total_amount FROM `expense` as e inner join expense_category as c ON c.id = e.category_id group by c.id order by e.date DESC LIMIT 0,3";
+        $sql = "SELECT *, sum(amount+tax) as total_amount FROM `expense` as e inner join expense_category as c ON c.id = e.category_id group by c.id order by e.date DESC LIMIT 0,3";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -56,6 +56,34 @@ class Model
 			$sql.= "LIMIT $start, $end";
 		}
 			
+		$query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+	
+	/**
+     * Get a sum of monthly expenses
+     */
+    public function getExpensesSum($month, $year, $start, $end)
+    {
+        $sql = "SELECT sum(amount+tax) as total,DATE_FORMAT(date, '%b') as month FROM expense ";
+		
+		if( $year != '' ){
+			$sql.="WHERE YEAR(date) = '$year' ";
+		}
+		
+		if( $month != '' ){
+			$sql.="and MONTH(date) = '$month' ";
+		}
+		
+		$sql.= "GROUP BY month(date) ";
+		$sql.= "ORDER BY date ASC ";  
+		
+		if( ( $start != -1 ) && ($end != 0) ){	
+			$sql.= "LIMIT $start, $end ";
+		}
+	//print_r($sql);		
 		$query = $this->db->prepare($sql);
         $query->execute();
 

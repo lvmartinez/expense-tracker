@@ -14,19 +14,26 @@ class Dashboard extends Controller
      */
     public function index()
     {
-		$year= date('Y');
-		$series = '';
+		$year= date('Y'); $totalExpense = 0;
+		$months= ['Jan'=>0, 'Feb'=>0, 'Mar'=>0, 'Apr'=>0, 'May'=>0, 'Jun'=>0, 'Jul'=>0, 'Aug'=>0, 'Sep'=>0, 'Oct'=>0, 'Nov'=>0, 'Dec'=>0];
 		
 		if ( isset($_GET) && ($_GET !='') ){
 			$year= isset($_GET['year']) ? $_GET['year'] : $year;
 		}
 		
-		$monthlyExpenses = (array)$this->model->getExpenses('', $year, -1, 0);
-		foreach ($monthlyExpenses as $expense){
-			
+		$monthlyExpensesSum = (array)$this->model->getExpensesSum('', $year, -1, 0);
+		
+		
+		foreach ($monthlyExpensesSum as $value){ 
+			$months[$value->month] = (float)$value->total;
+			$totalExpense += (float)$value->total;
+		
 		}
 		
-        // load views
+		$categories = "['".implode("','",array_keys($months))."']";
+		$data = "[".implode(",",array_values($months))."]";
+        	
+		// load views
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/navigation.php';
         require APP . 'view/expense/index.php';
