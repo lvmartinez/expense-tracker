@@ -56,7 +56,7 @@
                         <hr>
                         <div    class="list-group-item list-group-item-action">
                         <h6>View all Expenses</h6>
-                        <a    class="btn btn-secondary" href="/expense/dashboard/expenses"> All Expenses <i class="fa fa-caret-right"></i></a>
+                        <a    class="btn btn-secondary" href="/expense-tracker/dashboard/expenses"> All Expenses <i class="fa fa-caret-right"></i></a>
                         </div>
 
                     </div>

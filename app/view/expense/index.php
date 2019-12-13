@@ -1,4 +1,4 @@
-<?php 	print_r(array_keys($expenseCat['Electricity'])); ?>
+
 
 <script>
     window.onload = function () {
@@ -81,22 +81,25 @@
       </div><!-- /.col-lg-8 -->
         <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Over Budget Expenses</span>
+                <span class="text-muted">Over Budget Expenses (YEAR)</span>
             </h4>
             <ul class="list-group mb-3">
-				<?php foreach ($expenseCat as $exp){ ?>
+				<?php foreach ($expenseCat as $key => $exp){ 
+					if (  array_keys($exp)[0] < array_values($exp)[0] ){
+						$overbudget = array_values($exp)[0] - array_keys($exp)[0];
+				?>
 				
 					<li class="list-group-item d-flex justify-content-between bg-light">
 						<div class="text-danger">
-							<h6 class="my-0">Electricity</h6>
+							<h6 class="my-0"><?php echo $key?></h6>
 							<small><i class="fa fa-exclamation-triangle"></i> SPENDING OVER BUDGET</small>
 						</div>
-						<span class="text-danger">$130</span>
+						<span class="text-danger">$<?php echo $overbudget?></span>
 					</li>
-				<?php } ?>
+					<?php $totalOver += $overbudget; } } ?>
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total Overbudget (USD)</span>
-                    <strong>$70</strong>
+                    <strong>$<?php echo $totalOver; ?></strong>
                 </li>
             </ul>
 
