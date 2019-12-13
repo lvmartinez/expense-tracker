@@ -23,37 +23,27 @@
             <div class="dropdown mx-2 my-md-0 my-3" >
 <!-- Show last 5 expenses -->
                 <a href="#" class="dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown" data-offset="right" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell ml-3  text-white-50" ></i>  <span class="badge badge-pill badge-danger-alt">1</span></a>
+                    <i class="fas fa-bell ml-3  text-white-50" ></i>  <span id="notification" class="badge badge-pill badge-danger-alt"></span></a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink " style="right:10px;left: auto;" >
                     <div class="list-group list-group-notify">
+					
+						<?php $counter=0;
+						foreach ($latestExpenses as $latest) {
+							if ($latest->total_amount > $latest->budget ){
+								$counter+=1;
+						?>
                          <div    class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Automobile Expenses</h5>
-                                <small>3 days ago</small>
+                                <h5 class="mb-1"><?php echo $latest->name ?></h5>
+                                <small></small>
                             </div>
-                            <p class="mb-1">Last expense was $12.39</p>
+                            <p class="mb-1">Last expense was $<?php echo $latest->amount ?></p>
                             <small class="text-danger"><i class="text-danger fa fa-exclamation-triangle"></i> Expense over budget</small>
                         </div>
                         <hr>
-                        <div    class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Electricity</h5>
-                                <small>3 days ago</small>
-                            </div>
-                            <p class="mb-1">Last expense was $110.00</p>
-                            <small class="text-danger"> </small>
-                        </div>
-                        <hr>
-                        <div    class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Office Expenses</h5>
-                                <small>3 days ago</small>
-                            </div>
-                            <p class="mb-1">Last expense was $22.90</p>
-                            <small class="text-danger"></small>
-                        </div>
-                        <hr>
+                        
+						<? } }?>
                         <div    class="list-group-item list-group-item-action">
                         <h6>View all Expenses</h6>
                         <a    class="btn btn-secondary" href="/expense-tracker/dashboard/expenses"> All Expenses <i class="fa fa-caret-right"></i></a>
@@ -62,7 +52,15 @@
                     </div>
                 </div>
             </div>
-            <a href="/expense/settings" class=" "><i class="fas fa-cogs mx-3 text-white-50 my-md-0 my-3"></i></a>
+            <a href="/expense-tracker/settings" class=" "><i class="fas fa-cogs mx-3 text-white-50 my-md-0 my-3"></i></a>
         </div>
     </nav>
+	
+	<script type="text/javascript">
+        function myFunc(variable){
+            var s = document.getElementById(variable);
+            s.innerHTML = "<?php echo $counter?>";
+        }   
+        myFunc("notification");
+    </script>
 </header>

@@ -22,6 +22,7 @@ class Dashboard extends Controller
 		}
 		
 		$monthlyExpensesSum = (array)$this->model->getExpensesSum('', $year, -1, 0, 'date ASC', 'month, name');
+		$latestExpenses = $this->getLatestExpense();
 		
 		foreach ($monthlyExpensesSum as $value){ 
 			$months[$value->month] += (float)$value->total;
@@ -50,7 +51,7 @@ class Dashboard extends Controller
     {
 		
 		$expensesCategories = (array)$this->model->getExpensesCategories();
-		$latestExpenses = (array)$this->model->getLatestExpenses();
+		$latestExpenses = $this->getLatestExpense();
 		
         // load views
         require APP . 'view/_templates/header.php';
@@ -77,30 +78,13 @@ class Dashboard extends Controller
 		$totalMonthlyExpenses = (array)$this->model->getExpenses($month, $year, -1, 0);
 		$countExpenses = count($totalMonthlyExpenses);
 		$pages = ceil($countExpenses / $rowPerPage);
+		$latestExpenses = $this->getLatestExpense();
 		
         // load views
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/navigation.php';
         require APP . 'view/expense/expenses-list.php';
     }
-    /**
-     * ACTION: expense List Navigation
-     */
-	public function expensesNav()
-    {
-		$currentMonth=date('m');
-		$currentYear=date('Y');
-		$rowPerPage = 3;
-		$monthlyExpenses = (array)$this->model->getExpenses($currentMonth, $currentYear,0,$rowPerPage);
-		$countExpenses = count($monthlyExpenses);
-		$pages = ceil($countExpenses / $rowPerPage) + 1;
-		
-        // load views
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/navigation.php';
-        require APP . 'view/expense/expenses-list.php';
-    }
-	
 	
 	/**
      * ACTION: addExpense
@@ -112,6 +96,14 @@ class Dashboard extends Controller
             $this->model->addExpense('expense', $_POST);
         }
         header('location: ' . URL . 'dashboard/newExpense');
+    }
+	
+	/**
+     * ACTION: getLatestExpense
+     *      */
+    public function getLatestExpense()
+    {	
+		return (array)$this->model->getLatestExpenses();
     }
     
 
