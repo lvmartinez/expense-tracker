@@ -41,18 +41,19 @@ class Dashboard extends Controller
     {	
 		$month= date('m');
 		$year= date('Y');
-		$pageIndex = 0;
+		$pageIndex = 1;
 		
 		if ( isset($_GET) && ($_GET !='') ){
 			$month= isset($_GET['month']) ? $_GET['month'] : $month;
 			$year= isset($_GET['year']) ? $_GET['year'] : $year;
 			$pageIndex = isset($_GET['page']) ? $_GET['page'] : $pageIndex;
 		}
-		
+	
 		$rowPerPage = 3;
-		$monthlyExpenses = (array)$this->model->getExpenses($month, $year, $pageIndex, $rowPerPage);
-		$countExpenses = count($monthlyExpenses);
-		$pages = ceil($countExpenses / $rowPerPage) + 1;
+		$monthlyExpenses = (array)$this->model->getExpenses($month, $year, ($pageIndex-1)*$rowPerPage, $rowPerPage);
+		$totalMonthlyExpenses = (array)$this->model->getExpenses($month, $year, -1, 0);
+		$countExpenses = count($totalMonthlyExpenses);
+		$pages = ceil($countExpenses / $rowPerPage);
 		
         // load views
         require APP . 'view/_templates/header.php';

@@ -39,14 +39,18 @@ class Model
 	/**
      * Get all expenses
      */
-    public function getExpenses($month='', $year='', $start=0, $end=3)
+    public function getExpenses($month, $year, $start, $end)
     {
         $sql = "SELECT * FROM expense as e inner join expense_category as c ON c.id = e.category_id ";
 		if( ($month != '' ) && ($year != '' ) ){
 			$sql.="WHERE MONTH(date) = '$month' and YEAR(date) = '$year' ";
 		}
-		$sql .= "ORDER BY date DESC LIMIT $start, $end";      
+		$sql.= "ORDER BY date DESC ";  
 		
+		if( ( $start != -1 ) && ($end != 0) ){	
+			$sql.= "LIMIT $start, $end";
+		}
+			
 		$query = $this->db->prepare($sql);
         $query->execute();
 

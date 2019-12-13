@@ -9,7 +9,7 @@
             <div class="col-lg-12 col-md-12 col-sm-9">
                 <h4 class="mb-3">All Expenses </h4>
                 <p class="lead">
-                    Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+                    Do not save what is left after spending, but spend what is left after saving. <em> Warren Buffett</em>
                 </p>
             </div>
 			<div class="col-lg-3 col-md-3 mb-3">
@@ -47,8 +47,9 @@
 					
                 </select>
             </div>
-			<div class="col-lg-3 col-md-3 mb-3">
-				<button class="btn btn-primary btn-lg btn-block mb-3" type="submit">Search</button>
+			<div class="col-lg-3 col-md-3">
+				<label for="btn-primary">&nbsp</label>
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Search</button>
             </div>
             <div class="col-sm-12 text-right mb-3">
                 <a class="btn btn-info" href="/expense/dashboard/newExpense" role="button" > <i class="fa fa-plus"></i> Add Expense </a>
@@ -92,18 +93,20 @@
         <!-- START THE FEATURETTES -->
 
         <hr class="featurette-divider">
-
-        <!--<nav aria-label="Page navigation ">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="?page=<?php echo $i-1; ?>">Previous</a></li>
-				
-                <?php for ($i=1; $i<=$pages; $i++){ ?>
-				<li class="page-item"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-				<?php } ?>
-				
-                <li class="page-item"><a class="page-link" href="?page=<?php echo $i+1; ?>">Next</a></li>
-            </ul>
-        </nav>
+		
+		<?php //if () ?>
+			<nav aria-label="Page navigation ">
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+					
+					<?php for ($i=1; $i<=$pages; $i++){ ?>
+					<li class="page-item"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+					<?php } ?>
+					
+					<li class="page-item"><a class="page-link" href="?page=<?php echo $pages; ?>">Last</a></li>
+				</ul>
+			</nav>
+		<?php ?>	
 
         <hr class="featurette-divider">
 
