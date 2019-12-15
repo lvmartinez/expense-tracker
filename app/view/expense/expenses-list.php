@@ -63,6 +63,7 @@
                         <th scope="col">Date</th>
                         <th scope="col">Expense Account</th>
                         <th scope="col">Notes</th>
+						<th scope="col">Budget</th>
                         <th scope="col">Amount</th>
                     </tr>
                     </thead>
@@ -74,6 +75,7 @@
                             <th scope="row"><?php echo $expense->date ?></th>
                             <td><?php echo $expense->name ?></td>
                             <td><?php echo $expense->notes?></td>
+							<td>$<?php echo number_format($expense->budget,2)?></td>
                             <td>$<?php echo number_format($expense->amount,2)?></td>
                         </tr>
                         <?php
