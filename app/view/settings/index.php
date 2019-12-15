@@ -11,11 +11,14 @@
                 </h4>
                 <ul class="list-group mb-3">
                     <?php foreach ($expensesCategories as $category) {?>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0"><?php echo $category->name ?></h6>
-                            </div>
-                        </li>
+						<a class="page-link" href="	/expense-tracker/settings?cat=<?php echo $category->id; ?>"">
+							<li class="list-group-item d-flex justify-content-between lh-sm">
+								<div>
+									<h6 class="my-0"><?php echo $category->name ?></h6>
+								</div>
+								 <span class="text-muted"><?php echo $category->budget ?></span>
+							</li>
+						</a>
                     <?php }?>
 
 
@@ -25,23 +28,24 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Add New Expense Category</h4>
-                <form class="needs-validation" method="post" action="<?php echo URL; ?>settings/addCategory" novalidate>
+                <form class="needs-validation" method="post" action="<?php echo URL; ?>settings/processCategory" novalidate>
+					<input type="hidden" name="id" value="<?php echo $id; ?>" required>
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="category">Category Name</label>
-                            <input type="text" class="form-control" id="category" name="name" placeholder="" value="" required>
+                            <input type="text" class="form-control" id="category" name="name" placeholder="" value="<?php echo $name; ?>" required>
                             <div class="invalid-feedback">
                                 Required.
                             </div>
                         </div>
 						<div class="col-md-12 mb-3">
                             <label for="description">Category Description</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="" value="" required>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="" value="<?php echo $description ; ?>">
 
                         </div>
                         <div class="col-6 mb-3">
                             <label for="budget">Monthly Budget</label>
-                            <input type="text" class="form-control" id="budget" name="budget" placeholder="" value="" required>
+                            <input type="text" class="form-control" id="budget" name="budget" placeholder="" value="<?php echo $budget ; ?>" required>
                             <div class="invalid-feedback">
                                 Required.
                             </div>

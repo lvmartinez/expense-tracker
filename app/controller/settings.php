@@ -14,6 +14,18 @@ class Settings extends Controller
      */
     public function index()
     {
+		$id=''; $category = array(); $name=''; $description=''; $budget=0;
+		
+		if(isset($_GET['cat'])){
+			
+			$id = $_GET['cat'];
+			$category = (array)$this->model->getExpensesCategories($id);
+			$name = $category[0]->name; 
+			$description = $category[0]->description;
+			$budget = $category[0]->budget;
+			$budget = round((float)$budget, 2);
+		}
+		
 		$expensesCategories = (array)$this->model->getExpensesCategories();
 		$latestExpenses = (array)$this->model->getLatestExpenses();
         // load views
@@ -24,14 +36,45 @@ class Settings extends Controller
     }
 	
 	/**
-     * ACTION: addCategory
-     * This method handles what happens when you move to /dashboard/addExpense
+     * ACTION: processCategory
+     * 
      */
-    public function addCategory()
-    {
+	public function processCategory(){
+		
         if (isset($_POST)) {
-            $this->model->addCategory('expense_category', $_POST);
+			if ( isset($_POST['id']) && ( $_POST['id'] != '') ) {
+				
+				$this->updateCategory($_POST);
+			
+			}else{
+				unset($_POST['id']);
+				$this->addCategory($_POST);
+			}
         }
         header('location: ' . URL . 'settings/index');
     }
+	
+	/**
+     * ACTION: addCategory
+     * 
+     */
+    private function addCategory($data)
+    {
+        if (isset($_POST)) {
+            $this->model->addCategory('expense_category', $data);
+        }
+    }
+	
+	/**
+     * ACTION: updateCategory
+     * 
+     */
+	private function updateCategory($data)
+    {
+        if (isset($_POST)) {
+			$id = $data['id'];
+			$where = " where id = $id";
+			$result = $this->model->updateCategory('expense_category', $data, $where);
+		}
+	}
 }

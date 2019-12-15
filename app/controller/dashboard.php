@@ -25,12 +25,12 @@ class Dashboard extends Controller
 		$latestExpenses = $this->getLatestExpense();
 		
 		foreach ($monthlyExpensesSum as $value){ 
-			$months[$value->month] += (float)$value->total;
-			$totalExpense += (float)$value->total;
+			$months[$value->month] += round((float)$value->total, 2);
+			$totalExpense += round((float)$value->total, 2);
 			if ( !isset($expenseCat[$value->name][$value->budget])){
-				$expenseCat[$value->name][$value->budget] = (float)$value->total;
+				$expenseCat[$value->name][$value->budget] = round((float)$value->total, 2); //$value->total(float)$value->total;
 			}else{
-				$expenseCat[$value->name][$value->budget] += (float)$value->total;
+				$expenseCat[$value->name][$value->budget] += round((float)$value->total, 2);
 			}
 		
 		}

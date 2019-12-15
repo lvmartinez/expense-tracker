@@ -26,9 +26,13 @@ class Model
     /**
      * Get expenses categories
      */
-    public function getExpensesCategories()
+    public function getExpensesCategories($id = '')
     {
-        $sql = "SELECT * FROM expense_category order by name ASC";
+        $sql = "SELECT * FROM expense_category ";
+		if ($id != ''){
+			$sql .= "	where id=$id ";
+		}
+		$sql .= 'order by name ASC';
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -115,9 +119,19 @@ class Model
         }
     }
 	
+	/**
+     * Update category values on database
+     */
+	public function updateCategory($table, $data, $where)
+    {
+
+        if (isset($data)) {
+            $result=$this->dynamicUpdate($table, $data, $where);
+        }
+    }
+	
 	private function dynamicInsert($table, $data){
 		$fields = implode(", ", array_keys($data));
-		//$values = "'".implode("','", mysqli_real_escape_string($GLOBALS['conn'], array_values($data)) )."'";
 		$comma = " ";
 		$sql = "INSERT INTO $table ($fields ) VALUES (";
 		
@@ -134,6 +148,27 @@ class Model
 
 		if ($result == 1){
 			return array('result' => 1, 'id' => $result_id);
+		}else{
+			return array('result' => 0);
+		}
+	}
+	
+	private function dynamicUpdate($table, $data, $where){
+		$sql = "UPDATE $table SET";
+		$comma = " ";
+
+		foreach($data as $key => $val) {
+			$sql .= $comma . $key . " = '" . trim($val) . "'";
+			$comma = ", ";
+		}
+		$sql .= $where;
+
+		$query = $this->db->prepare($sql);
+		
+		$result = $query->execute();
+	
+		if ($result == 1){
+			return array('result' => 1);
 		}else{
 			return array('result' => 0);
 		}
