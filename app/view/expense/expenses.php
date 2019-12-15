@@ -78,14 +78,7 @@
                         </div>
                         <div class="col-md-6  mb-3">
                             <label for="tax">Tax</label>
-                            <div class="input-group">
-
-                            <input type="text" class="form-control" name="tax" id="tax" placeholder="" required>
-                            
-                            <div class="invalid-feedback">
-                                Please provide a valid amount.
-                            </div>
-                            </div>
+                            <input type="text" class="form-control" name="tax" id="tax" placeholder="" value="0">
                         </div>
 
 

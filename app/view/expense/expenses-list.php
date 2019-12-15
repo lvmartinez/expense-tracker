@@ -92,28 +92,6 @@
 			</div>
 		</form>
 
-        <!-- START THE FEATURETTES -->
-
-        <hr class="featurette-divider">
-		
-		<?php //if () ?>
-			<nav aria-label="Page navigation ">
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="?page=1">First</a></li>
-					
-					<?php for ($i=1; $i<=$pages; $i++){ ?>
-					<li class="page-item"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-					<?php } ?>
-					
-					<li class="page-item"><a class="page-link" href="?page=<?php echo $pages; ?>">Last</a></li>
-				</ul>
-			</nav>
-		<?php ?>	
-
-        <hr class="featurette-divider">
-
-        <!-- /END THE FEATURETTES -->
-
     </div><!-- /.container -->
 
 

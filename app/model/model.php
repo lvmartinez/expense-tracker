@@ -17,7 +17,7 @@ class Model
      */
     public function getLatestExpenses()
     {
-        $sql = "SELECT *, (amount+tax) as total_amount FROM `expense` as e inner join expense_category as c ON c.id = e.category_id group by c.id,date order by e.date DESC LIMIT 0,3";   
+        $sql = "SELECT *, (amount+tax) as total_amount FROM `expense` as e inner join expense_category as c ON c.id = e.category_id group by c.id,date order by e.date DESC LIMIT 0,5";   
 		$query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll();
@@ -91,7 +91,7 @@ class Model
 		if( ( $start != -1 ) && ($end != 0) ){	
 			$sql.= "LIMIT $start, $end ";
 		}
-		
+
 		$query = $this->db->prepare($sql);
         $query->execute();
 

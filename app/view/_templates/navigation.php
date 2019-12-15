@@ -29,21 +29,24 @@
                     <div class="list-group list-group-notify">
 					
 						<?php $counter=0;
-						foreach ($latestExpenses as $latest) {
+						if (count($latestExpenses) > 0){
+							foreach ($latestExpenses as $latest) {
 							if ($latest->total_amount > $latest->budget ){
 								$counter+=1;
 						?>
-                         <div    class="list-group-item list-group-item-action">
+						<div    class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1"><?php echo $latest->name ?></h5>
+                                <h5 class="mb-1"><?php echo $latest->name; ?></h5>
                                 <small></small>
                             </div>
-                            <p class="mb-1">Last expense was $<?php echo $latest->amount ?></p>
+                            <p class="mb-1">Last expense was $<?php echo $latest->amount; ?></p>
                             <small class="text-danger"><i class="text-danger fa fa-exclamation-triangle"></i> Expense over budget</small>
                         </div>
                         <hr>
-                        
-						<? } }?>
+						
+						<?php } 
+							}
+						}?>
                         <div    class="list-group-item list-group-item-action">
                         <h6>View all Expenses</h6>
                         <a    class="btn btn-secondary" href="/expense-tracker/dashboard/expenses"> All Expenses <i class="fa fa-caret-right"></i></a>

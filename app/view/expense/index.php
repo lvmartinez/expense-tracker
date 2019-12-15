@@ -1,5 +1,3 @@
-
-
 <script>
     window.onload = function () {
 		
@@ -111,7 +109,7 @@
       <h4>Expenses</h4>
       <div class="row">
           <div class="col-md-12">
-              Total Expenses: <strong>$<? echo $totalExpense; ?></strong>
+              Total Expenses: <strong>$<?php echo $totalExpense; ?></strong>
           </div>
       </div>
       <div class="row">

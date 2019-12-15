@@ -73,11 +73,9 @@ class Dashboard extends Controller
 			$pageIndex = isset($_GET['page']) ? $_GET['page'] : $pageIndex;
 		}
 	
-		$rowPerPage = 10;
+		$rowPerPage = 100;
 		$monthlyExpenses = (array)$this->model->getExpenses($month, $year, ($pageIndex-1)*$rowPerPage, $rowPerPage);
 		$totalMonthlyExpenses = (array)$this->model->getExpenses($month, $year, -1, 0);
-		$countExpenses = count($totalMonthlyExpenses);
-		$pages = ceil($countExpenses / $rowPerPage);
 		$latestExpenses = $this->getLatestExpense();
 		
         // load views
